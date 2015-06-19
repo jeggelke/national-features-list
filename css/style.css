@@ -1,0 +1,13 @@
+body {
+	background-color: #cdcdcd;
+}
+
+.feature-box {
+	background-color: #fff;
+	border-radius: 20px;
+}
+
+.abstract {
+	margin: 20px auto;
+	font-style: italic; 
+}
