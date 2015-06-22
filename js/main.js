@@ -33,6 +33,11 @@ function listFeatures() {
 			  
 			  var featureElement = document.createElement('div');
 			  featureElement.className = 'text-center feature-box';
+			  featureElement.id = 'feature-' + i;
+			  if (featureStatus.length > 30) { 
+				  var thisFeatureClasses = featureElement.getAttribute('class');
+				  featureElement.setAttribute('class', thisFeatureClasses + ' completed-feature');
+			  }
 			  
 			  var moduleTitle = document.createElement('h4');
 			  moduleTitle.innerHTML = featureTitle;
@@ -41,7 +46,7 @@ function listFeatures() {
 			  moduleAuthors.innerHTML = '<strong>Lead Author(s)</strong>: ' + leadWriters;
 			  
 			  var featureElementContainer = document.createElement('div');
-			  featureElementContainer.className = 'feature-box-container col-lg-3 col-md-4 col-sm-6'
+			  featureElementContainer.className = 'feature-box-container col-lg-3 col-md-4 col-sm-6';			  
 			  
 			  var featureDateStatus = document.createElement('div');
 			  featureDateStatus.className = 'row';
