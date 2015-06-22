@@ -17,3 +17,7 @@ body {
 	margin: 20px auto;
 	font-style: italic; 
 }
+
+.completed-feature {
+	background-color: #cff9cf;
+}
