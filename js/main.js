@@ -30,82 +30,110 @@ function listFeatures() {
               var partners = rows[i][9];
               var promotionContact = rows[i][10];
               var otherNotes = rows[i][11];
-			  
+		//Feature Box Container 	  
+			  var featureElementContainer = document.createElement('div');
+			  featureElementContainer.className = 'feature-box-container col-lg-3 col-md-4 col-sm-6';			  
+		//Create Feature Box	  
 			  var featureElement = document.createElement('div');
 			  featureElement.className = 'text-center feature-box';
-			  featureElement.id = 'feature-' + i;
+			  var thisElementId = 'feature-' + i;
+			  featureElement.id = thisElementId;
+			  var featureModalId = thisElementId + '-modal';
+			  featureElement.setAttribute('data-toggle', 'modal');
+			  featureElement.setAttribute('data-target', '#' + featureModalId)
+		//Conditional Background color when created	  
 			  if (featureStatus.length > 30) { 
 				  var thisFeatureClasses = featureElement.getAttribute('class');
 				  featureElement.setAttribute('class', thisFeatureClasses + ' completed-feature');
 			  }
-			  
+		//Title
 			  var moduleTitle = document.createElement('h4');
 			  moduleTitle.innerHTML = featureTitle;
-			  
+		//Authors	  
 			  var moduleAuthors = document.createElement('p');
 			  moduleAuthors.innerHTML = '<strong>Lead Author(s)</strong>: ' + leadWriters;
-			  
-			  var featureElementContainer = document.createElement('div');
-			  featureElementContainer.className = 'feature-box-container col-lg-3 col-md-4 col-sm-6';			  
-			  
+		//Date/Status Row	  
 			  var featureDateStatus = document.createElement('div');
 			  featureDateStatus.className = 'row';
 			  featureDateStatus.id = 'dateStatus';			  
-			  
+		//Date
 			  var moduleDate = document.createElement('div');
 			  moduleDate.className = 'col-lg-6 col-md-6 col-sm-6 col-xs-6'
 			  if (completionDate.length <= 1){
 				  completionDate = "TBD"
 			  }
 			  moduleDate.innerHTML = "<strong>Date: </strong>" + completionDate;
-			  
+		//Status
 			  var moduleStatus = document.createElement('div');
 			  moduleStatus.className = 'col-lg-6 col-md-6 col-sm-6 col-xs-6'
 			  if (featureStatus.length > 30) {
 				  featureStatus = '<a href="' + featureStatus + '" target="_blank">Posted</a>'
 			  }			  
 			  moduleStatus.innerHTML = '<strong>Status:</strong> ' + featureStatus;
-
+		//Append Objects
 			  featureDateStatus.appendChild(moduleDate);
-			  featureDateStatus.appendChild(moduleStatus);
-			  
+			  featureDateStatus.appendChild(moduleStatus);			  
 			  featureElement.appendChild(moduleTitle);
 			  featureElement.appendChild(moduleAuthors);
 			  featureElement.appendChild(featureDateStatus);
 			  featureElementContainer.appendChild(featureElement);
 			  addFeatures.appendChild(featureElementContainer);
-/*			  
-			  var jumpElement = document.createElement('div')
-			  jumpElement.className= 'main-div';
-			  jumpElement.id = FirstName + LastName;
-			  
-			  
-              var nameElement = document.createElement('a');
-              nameElement.innerHTML = FirstName + ' ' + LastName;
-              nameElement.className = 'name';
-			  nameElement.href = "mailto:" + Email;
-			  
+		//Create Modal			  
 
-              var titleElement = document.createElement('p');
-              titleElement.innerHTML = Title + '<br>' + Division;
-              titleElement.className = 'title';
-              var divisionElement = document.createElement('p');
-              divisionElement.innerHTML =  Division;
-              divisionElement.className = 'division';
-              var bioElement = document.createElement('p');
-              bioElement.innerHTML =  Bio;
-              bioElement.className = 'bio';
-              var imageElement = document.createElement('a');
-              imageElement.innerHTML = Image;
-              imageElement.className = 'image';
-              
-              jumpElement.appendChild(imageElement);
-              jumpElement.appendChild(nameElement);
-              jumpElement.appendChild(titleElement);
-			  jumpElement.appendChild(bioElement);
-			  
-              mainBio.appendChild(jumpElement);	
-*/              		 			  
+			  var modalArea = document.getElementById('modal-area');			  
+			  var modalContainer = document.createElement('div');
+			  modalContainer.className = 'modal fade';
+			  modalContainer.id = featureModalId;
+			  modalContainer.setAttribute('tabIndex', '-1');
+			  modalContainer.setAttribute('role', 'dialog');
+			  modalContainer.setAttribute('aria-labelledby', 'modal-' + i + '-label');
+			  modalArea.appendChild(modalContainer);
+			  var modalDialog = document.createElement('div');
+			  modalDialog.className = 'modal-dialog';
+			  modalDialog.setAttribute('role', 'document');
+			  modalContainer.appendChild(modalDialog);
+		//Modal Content
+			  var modalContent = document.createElement('div');
+			  modalContent.className = 'modal-content';
+			  modalDialog.appendChild(modalContent);
+		//Modal Header
+			  var modalHeader = document.createElement('div');
+			  modalHeader.className = 'modal-header';
+			  modalContent.appendChild(modalHeader);
+		//Modal Close Button
+			  var modalClose = document.createElement('button');
+			  modalClose.setAttribute('type', 'close');
+			  modalClose.className = 'close';
+			  modalClose.setAttribute('data-dismiss', 'modal');
+			  modalClose.setAttribute('aria-label', 'Close');
+			  modalHeader.appendChild(modalClose);
+			  var closeX = document.createElement('span');
+			  closeX.setAttribute('aria-hidden', 'true');
+			  closeX.innerHTML = '&times;';			  
+			  modalClose.appendChild(closeX);
+		//Modal Title
+			  var modalTitle = document.createElement('h4');
+			  modalTitle.className = 'modal-title';
+			  modalTitle.id = 'modal-' + i + '-label';
+			  modalTitle.innerHTML = featureTitle;
+			  modalHeader.appendChild(modalTitle);
+		//Modal Body
+			  var modalBody = document.createElement('div');
+			  modalBody.className = 'modal-body';
+			  modalBody.innerHTML = '...';
+			  modalContent.appendChild(modalBody);
+		//Modal Footer
+			  var modalFooter = document.createElement('div');
+			  modalFooter.className = 'modal-footer';
+			  modalContent.appendChild(modalFooter);
+		//Footer Buttons
+			  var footerButton = document.createElement('button');
+			  footerButton.setAttribute('type', 'button');
+			  footerButton.className = 'btn btn-default';
+			  footerButton.setAttribute('data-dismiss', 'modal');
+			  footerButton.innerHTML = 'Close';
+			  modalFooter.appendChild(footerButton);
+				
             }			
           }
         });
