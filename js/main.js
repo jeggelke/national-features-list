@@ -1,5 +1,5 @@
 var tableId = '1FN7VQx8Shni-c3nuvxIrFjylepCU-ajF2ZFF_gRb';
-function executive() {
+function listFeatures() {
         var query = 'SELECT * FROM ' + tableId;
         var encodedQuery = encodeURIComponent(query);
 
@@ -15,7 +15,7 @@ function executive() {
           dataType: 'jsonp',
           success: function (data) {
             var rows = data['rows'];
-            var mainBio = document.getElementById('executive');
+            var addFeatures = document.getElementById('features-list');
             for (var i in rows) {
 		//Set row variables 
               var completionDate = rows[i][0];
@@ -32,7 +32,43 @@ function executive() {
               var otherNotes = rows[i][11];
 			  
 			  var featureElement = document.createElement('div');
+			  featureElement.className = 'text-center feature-box';
 			  
+			  var moduleTitle = document.createElement('h4');
+			  moduleTitle.innerHTML = featureTitle;
+			  
+			  var moduleAuthors = document.createElement('p');
+			  moduleAuthors.innerHTML = '<strong>Lead Author(s)</strong>: ' + leadWriters;
+			  
+			  var featureElementContainer = document.createElement('div');
+			  featureElementContainer.className = 'feature-box-container col-lg-3 col-md-4 col-sm-6'
+			  
+			  var featureDateStatus = document.createElement('div');
+			  featureDateStatus.className = 'row';
+			  featureDateStatus.id = 'dateStatus';			  
+			  
+			  var moduleDate = document.createElement('div');
+			  moduleDate.className = 'col-lg-6 col-md-6 col-sm-6 col-xs-6'
+			  if (completionDate.length <= 1){
+				  completionDate = "TBD"
+			  }
+			  moduleDate.innerHTML = "<strong>Date: </strong>" + completionDate;
+			  
+			  var moduleStatus = document.createElement('div');
+			  moduleStatus.className = 'col-lg-6 col-md-6 col-sm-6 col-xs-6'
+			  if (featureStatus.length > 30) {
+				  featureStatus = '<a href="' + featureStatus + '" target="_blank">Posted</a>'
+			  }			  
+			  moduleStatus.innerHTML = '<strong>Status:</strong> ' + featureStatus;
+
+			  featureDateStatus.appendChild(moduleDate);
+			  featureDateStatus.appendChild(moduleStatus);
+			  
+			  featureElement.appendChild(moduleTitle);
+			  featureElement.appendChild(moduleAuthors);
+			  featureElement.appendChild(featureDateStatus);
+			  featureElementContainer.appendChild(featureElement);
+			  addFeatures.appendChild(featureElementContainer);
 /*			  
 			  var jumpElement = document.createElement('div')
 			  jumpElement.className= 'main-div';
