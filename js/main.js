@@ -113,7 +113,7 @@ function listFeatures() {
 			  modalClose.appendChild(closeX);
 		//Modal Title
 			  var modalTitle = document.createElement('h4');
-			  modalTitle.className = 'modal-title';
+			  modalTitle.className = 'modal-title text-center';
 			  modalTitle.id = 'modal-' + i + '-label';
 			  modalTitle.innerHTML = featureTitle;
 			  modalHeader.appendChild(modalTitle);
