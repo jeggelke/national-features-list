@@ -30,6 +30,7 @@ function listFeatures() {
               var partners = rows[i][9];
               var promotionContact = rows[i][10];
               var otherNotes = rows[i][11];
+              var featureDescription = rows[i][12];
 		//Feature Box Container 	  
 			  var featureElementContainer = document.createElement('div');
 			  featureElementContainer.className = 'feature-box-container col-lg-3 col-md-4 col-sm-6';			  
@@ -117,11 +118,44 @@ function listFeatures() {
 			  modalTitle.id = 'modal-' + i + '-label';
 			  modalTitle.innerHTML = featureTitle;
 			  modalHeader.appendChild(modalTitle);
+		//Modal Author	  
+			  var modalAuthors = document.createElement('p');
+			  modalAuthors.className = 'text-center';
+			  modalAuthors.innerHTML = '<strong>Lead Author(s):</strong> ' + leadWriters;
+			  modalHeader.appendChild(modalAuthors);	  			  
 		//Modal Body
 			  var modalBody = document.createElement('div');
 			  modalBody.className = 'modal-body';
-			  modalBody.innerHTML = '...';
 			  modalContent.appendChild(modalBody);
+		//Description
+			  var modalFeatureDescription = document.createElement('p');
+			  modalFeatureDescription.className = 'modal-feature-description text-center';
+			  if (featureDescription.length > 1) {
+			  	modalFeatureDescription.innerHTML = featureDescription;
+			  } else {modalFeatureDescription.innerHTML = '<i>No description</i>'};
+			  modalBody.appendChild(modalFeatureDescription);
+		//Modal body row 			  
+			  var modalBodyRow = document.createElement('div');
+			  modalBodyRow.className = 'row';			  			  
+		//Modal Other Staff	  
+			  if (otherStaff.length > 1) {
+				  var modalOtherStaff = document.createElement('div');
+				  modalOtherStaff.className = 'text-center col-sm-6 col-md-6 col-lg-6';			  
+				  modalOtherStaff.innerHTML = '<strong>Other Staff:</strong> ' + otherStaff;
+				  modalBodyRow.appendChild(modalOtherStaff);
+			  }
+		//Modal Status
+			  var modalStatus = document.createElement('div');
+			  modalStatus.className = 'text-center col-sm-6 col-md-6 col-lg-6';
+			  modalStatus.innerHTML = '<strong>Status:</strong> ' + featureStatus;
+			  modalBodyRow.appendChild(modalStatus);
+		//Modal Length			  
+			  var modalLength = document.createElement('div');
+			  modalLength.className = 'text-center col-sm-6 col-md-6 col-lg-6';
+			  modalLength.innerHTML = '<strong>Approx. Length:</strong> ' + featureLength;
+			  modalBodyRow.appendChild(modalLength);
+			  
+			  modalBody.appendChild(modalBodyRow);
 		//Modal Footer
 			  var modalFooter = document.createElement('div');
 			  modalFooter.className = 'modal-footer';
