@@ -13,6 +13,10 @@ body {
 	margin: 5px auto;
 }
 
+.feature-box:hover {
+	cursor: pointer;	
+}
+
 .abstract {
 	margin: 20px auto;
 	font-style: italic; 
